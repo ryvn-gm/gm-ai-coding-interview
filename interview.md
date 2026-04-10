@@ -1,4 +1,7 @@
 # Signal / Algorithm Engineer 面試框架
+
+> 🌐 **語言：** 繁體中文（完整版）｜[English (condensed)](interview.en.md)
+
 **職位：** Signal Processing / Algorithm Engineer（Mid，2–5 年）
 **形式：** Live Coding，全程開放 AI 工具
 **總時間：** 90 分鐘（Task 1 · 30 min｜Task 2 · 40 min｜Task 3 · 15 min｜Buffer · 5 min）
