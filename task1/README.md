@@ -1,5 +1,7 @@
 # Task 1 — 在現有 Codebase 上加新功能
 
+> 🌐 **語言：** 繁體中文｜[English version](README.en.md)
+
 歡迎！這個任務會請你在一個已有的 Python codebase 上加入新功能。
 
 ## 你會拿到的東西
@@ -40,5 +42,13 @@ print(f"偵測到 {result.count} 個 reps，位置在 {result.peak_indices}")
 - 語言：Python
 - 需要套件：numpy、scipy
 - 全程開放使用任何 AI 工具，沒有限制
+
+## 面試時的小提醒
+
+詳細說明請見根目錄的 `welcome.md`，這裡是快速版：
+
+- **邊做邊講**：請把你的思考過程說出來。例如「我先讀一下這個 class」、「我打算用 X 方式實作 detect_fast_reps，因為 Y」、「我要問 AI 一個關於 Z 的問題」。安靜寫 code 二十分鐘對你不利。
+- **遇到不清楚的地方**：先做合理假設並說出來。例如「我先假設 sampling rate 固定是 100Hz」，然後在這個假設下繼續做，不要卡住。
+- **不會的東西**：直接上網查或問 AI，不要硬猜。
 
 祝順利！
