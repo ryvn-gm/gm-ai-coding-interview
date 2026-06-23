@@ -21,3 +21,4 @@ Thumbs.db
 
 # Task 2 generator (面試官專用，不公開)
 task2/generate_csv.py
+.gstack/

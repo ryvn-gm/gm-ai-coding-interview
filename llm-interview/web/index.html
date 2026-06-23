@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLM / 演算法面試・抽卡題庫</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ============ 歡迎 / 指導頁 ============ -->
+  <section id="welcome" class="screen">
+    <div class="welcome-wrap">
+      <header class="welcome-head">
+        <p class="eyebrow">面試官工具</p>
+        <h1>LLM / 演算法面試・抽卡題庫</h1>
+        <p class="subtitle">隨機抽題、翻看詳解，引導一場「看思考、不看背誦」的對話。</p>
+      </header>
+
+      <!-- 面試理念：要傳達給候選人的核心訊息 -->
+      <div class="creed">
+        <h2>🧭 面試理念（請在開始時讓候選人知道）</h2>
+        <p class="creed-lead">「<strong>答錯、或不知道，完全沒關係。</strong>我們真正想看的，是你<strong>怎麼思考一個問題</strong>。」</p>
+        <ul>
+          <li><strong>沒有標準答案。</strong>同一題往往可以從不同角度切入，也歡迎你提出不同看法、甚至和我們辯論。</li>
+          <li><strong>可以說「我不確定」。</strong>接著告訴我們你會怎麼推理、怎麼查證、會做什麼假設——這比硬背一個答案更有價值。</li>
+          <li><strong>請邊想邊說（think out loud）。</strong>把你的思路講出來，我們才看得到你怎麼拆解問題。</li>
+          <li><strong>題目可以反問。</strong>需求不清楚時，先界定範圍、做合理假設再往下，是我們很看重的能力。</li>
+        </ul>
+      </div>
+
+      <!-- 使用說明：給面試官 -->
+      <div class="howto">
+        <h2>🃏 怎麼用這個工具</h2>
+        <div class="howto-grid">
+          <div class="howto-item">
+            <span class="howto-num">1</span>
+            <p><strong>篩選</strong>想考的回合、主題、難度，或直接全開。</p>
+          </div>
+          <div class="howto-item">
+            <span class="howto-num">2</span>
+            <p>按 <strong>抽一張</strong>，畫面先只顯示「題目」，可以先唸給候選人。</p>
+          </div>
+          <div class="howto-item">
+            <span class="howto-num">3</span>
+            <p>按 <strong>翻看參考答案</strong>，看到考點、多種解法、追問與 green/red flag。</p>
+          </div>
+          <div class="howto-item">
+            <span class="howto-num">4</span>
+            <p>抽卡<strong>不重複</strong>直到該輪抽完。也可切到「瀏覽全部」直接點題。</p>
+          </div>
+        </div>
+        <p class="howto-tip">小提醒：參考答案是<strong>給面試官的</strong>，刻意寫得比候選人需要回答的更完整。候選人答到其中幾個角度就很好了，重點放在他怎麼想、怎麼追問、怎麼面對不確定。</p>
+      </div>
+
+      <button id="enterBtn" class="btn btn-primary btn-lg">開始抽卡 →</button>
+      <p class="welcome-foot">共 <span id="welcomeCount">—</span> 題　·　一面技術基礎 + 二面深度進階　·　本地離線可用</p>
+    </div>
+  </section>
+
+  <!-- ============ 抽卡 / 題庫主畫面 ============ -->
+  <section id="app" class="screen hidden">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button id="homeBtn" class="btn btn-ghost" title="回到說明頁">☰ 說明</button>
+        <span class="brand">LLM / 演算法抽卡</span>
+      </div>
+      <div class="topbar-right">
+        <button id="modeDrawBtn" class="seg active">抽卡</button>
+        <button id="modeListBtn" class="seg">瀏覽全部</button>
+      </div>
+    </header>
+
+    <!-- 篩選列 -->
+    <div class="filters">
+      <div class="filter-group">
+        <span class="filter-label">回合</span>
+        <div id="roundFilter" class="chips"></div>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">難度</span>
+        <div id="diffFilter" class="chips"></div>
+      </div>
+      <div class="filter-group filter-topics">
+        <span class="filter-label">主題</span>
+        <div id="topicFilter" class="chips"></div>
+      </div>
+      <div class="filter-actions">
+        <span id="poolInfo" class="pool-info"></span>
+        <button id="clearFilters" class="btn btn-ghost btn-sm">清除篩選</button>
+      </div>
+    </div>
+
+    <!-- 抽卡模式 -->
+    <main id="drawMode" class="draw-mode">
+      <div id="cardSlot" class="card-slot">
+        <div class="empty-hint">
+          <div class="empty-emoji">🎴</div>
+          <p>按下方「抽一張」開始</p>
+        </div>
+      </div>
+
+      <!-- 持續顯示的提醒橫幅 -->
+      <div class="reminder-banner">
+        💡 看的是<strong>思考過程</strong>，不是背誦。答錯 / 不知道沒關係，鼓勵不同角度與反問。
+      </div>
+
+      <div class="draw-controls">
+        <button id="prevBtn" class="btn btn-ghost" disabled>← 上一張</button>
+        <button id="drawBtn" class="btn btn-primary btn-lg">🎲 抽一張</button>
+        <button id="revealBtn" class="btn btn-secondary" disabled>翻看參考答案</button>
+      </div>
+      <p id="deckStatus" class="deck-status"></p>
+    </main>
+
+    <!-- 瀏覽模式 -->
+    <main id="listMode" class="list-mode hidden">
+      <div id="listContainer" class="list-container"></div>
+    </main>
+  </section>
+
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
